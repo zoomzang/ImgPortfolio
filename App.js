@@ -1,21 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, SafeAreaView, StyleSheet} from 'react-native';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, Layout, Text, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { AppNavigator } from './screens/navigation';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import { PortfolioScreen } from './screens/portfolio'; //dont use once AppNavigator functioning
+import { ImgviewScreen } from './screens/imgview';
+
+const HomeScreen = () => (
+    <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text category='h1'>HOME</Text>
+    </Layout>
+);
+const Stack = createStackNavigator();
+
+// link to react-navigation component https://reactnative.dev/docs/navigation
+export default () => (
+    <>
+        
+        <ApplicationProvider {...eva} theme={eva.light}>
+            <NavigationContainer>
+                <Stack.Navigator headerMode='none'>
+                    <Stack.Screen
+                        name='Portfolio'
+                        component={PortfolioScreen}
+                    />
+                    <Stack.Screen
+                        name='Imgview'
+                        component={ImgviewScreen}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+
+
+        </ApplicationProvider>
+    </>
+
+);
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    imgContainer: {
+        top: 50,
+        left: 50
+    },
+}
+
+);
+
