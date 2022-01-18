@@ -23,7 +23,7 @@ export default () => (
         
         <ApplicationProvider {...eva} theme={eva.light}>
             <NavigationContainer>
-                <Stack.Navigator headerMode='none'>
+                <Stack.Navigator >
                     <Stack.Screen
                         name='Portfolio'
                         component={PortfolioScreen}
