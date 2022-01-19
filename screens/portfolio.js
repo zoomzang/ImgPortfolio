@@ -10,10 +10,8 @@ export const PortfolioScreen = ({ navigation }) => {
             width: 200,
             flex: 1,
         },
-        cardScroll: {    
-        },
         cardView: {
-            flex:1,
+            flex: 1,
             flexDirection: "row",
             justifyContent: "center",
             alignItems: "center",
@@ -50,15 +48,14 @@ export const PortfolioScreen = ({ navigation }) => {
         { name: '1007a', key: '1007' },
         { name: '1008a', key: '1008' },
 
-        
+
     ]; // key property by default. id is also fine with keyExtractor property
-    const ImgCard = ({ id }) => {
+    const ImgCard = ({id }) => {
         return (
-            
-                <View style={styles.imgContainer} >
-                    <TouchableOpacity onPress={navigateImgview}>
+            <View style={styles.imgContainer} >
+                <TouchableOpacity onPress={() => navigateImgview({ id })}>
                         <Image
-                            source={{ uri: `https://picsum.photos/id/${id}/200` }}
+                            source={{ uri: `https://picsum.photos/id/${id}/400` }}
                             style={{ height: 150, width: 150 }}
                         />
                     </TouchableOpacity>
@@ -67,9 +64,8 @@ export const PortfolioScreen = ({ navigation }) => {
         );
     };
 
-    const navigateImgview = () => {
-        console.log("opening image!");
-        navigation.navigate('Imgview', { id: imgIDs[1]}); //better to take id as parameter
+    const navigateImgview = ({ id }) => {
+        navigation.navigate('Imgview', { name: `${ id }` } ); //name passed as a string
         
     };
 
